@@ -11,6 +11,7 @@ public class Rocket
     public int X { get; set; } = 0;
     public int Y { get; set; } = 0;
     public int Speed { get; set; } = 250;
+    private bool isActive = true;
 
     public async Task MoveAsync()
     {
@@ -18,6 +19,10 @@ public class Rocket
         while (true) {
             await Task.Delay(Speed);
             Clear();
+            if (!isActive)
+            {
+                break;
+            }
             if (Y == 1)
             {
                 break;
@@ -25,6 +30,11 @@ public class Rocket
             Y--;
             Draw();
         }
+    }
+
+    public void Destroy()
+    {
+        isActive = false;
     }
 
     public void Draw()
