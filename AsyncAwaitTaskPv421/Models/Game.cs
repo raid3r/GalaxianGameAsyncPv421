@@ -124,7 +124,7 @@ public class Game
         }
     }
 
-    private async Task RocketFireAsync(int x, int y)
+    private void RocketFire(int x, int y)
     {
         lock (rockets)
         {
@@ -388,10 +388,7 @@ public class Game
                     case ConsoleKey.Escape:
                         return; // Exit the game loop
                     case ConsoleKey.Spacebar:
-                        Task.Run(async () =>
-                        {
-                            await RocketFireAsync(player.X, Height - 3); // Fire a rocket
-                        }); // Start the rocket firing asynchronously
+                        RocketFire(player.X, Height - 3); // Fire a rocket
                         break;
                     default:
                         break;
